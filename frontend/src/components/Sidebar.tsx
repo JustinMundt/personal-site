@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Drawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
 import { styled } from '@mui/material/styles'
@@ -18,18 +19,30 @@ const StyledListItem = styled(ListItem)(({ theme } ) => ({
  alignItems:'center',
 }));
 
+
 export default function Sidedrawer() {
+    const [location, setLocation] = useState("")
+
+
+const handleClick = (loc) => {
+    setLocation(loc)
+};
+
 
 return (
         <Drawer variant="permanent" anchor="left">
             <StyledList>
                 <StyledListItem>
-                    <Button variant='contained'>Home</Button>
+                    <Button variant='contained' onClick={() => handleClick("Home")}>Home</Button>
                 </StyledListItem>
                 <StyledListItem>
-                    <Button variant='contained'>Projects</Button>
+                    <Button variant='contained' onClick={() => handleClick("Projects")}>Projects</Button>
+                </StyledListItem>
+                <StyledListItem>
+                    <Button variant='contained' onClick={() => handleClick("About Me")}>About Me</Button>
                 </StyledListItem>
             </StyledList>
+        <div>{location}</div>
         </Drawer>
     )
     }
