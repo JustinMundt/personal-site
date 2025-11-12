@@ -4,6 +4,8 @@ import List from '@mui/material/List'
 import { styled } from '@mui/material/styles'
 import ListItem from '@mui/material/ListItem'
 import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
+import { Outlet, Link } from "react-router-dom";
 
 const StyledList = styled(List)(({ theme }) => ({
           height: '100%',           // fill the drawer
@@ -30,20 +32,25 @@ const handleClick = (loc) => {
 
 
 return (
+        <Box>
         <Drawer variant="permanent" anchor="left">
             <StyledList>
                 <StyledListItem>
-                    <Button variant='contained' onClick={() => handleClick("Home")}>Home</Button>
+                    <Button component={Link} to="/" variant='contained' onClick={() => handleClick("Home")}>Home</Button>
                 </StyledListItem>
                 <StyledListItem>
-                    <Button variant='contained' onClick={() => handleClick("Projects")}>Projects</Button>
+                    <Button component={Link} to="/projects" variant='contained' onClick={() => handleClick("Projects")}>Projects</Button>
                 </StyledListItem>
                 <StyledListItem>
-                    <Button variant='contained' onClick={() => handleClick("About Me")}>About Me</Button>
+                    <Button component={Link} to="/aboutme" variant='contained' onClick={() => handleClick("About Me")}>About Me</Button>
                 </StyledListItem>
             </StyledList>
         <div>{location}</div>
         </Drawer>
+            <Box>
+                <Outlet />
+            </Box>
+        </Box>
     )
     }
 
