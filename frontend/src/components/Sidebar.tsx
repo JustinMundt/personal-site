@@ -44,6 +44,9 @@ return (
                 <StyledListItem>
                     <Button component={Link} to="/aboutme" variant='contained' onClick={() => handleClick("About Me")}>About Me</Button>
                 </StyledListItem>
+                <StyledListItem>
+                    <Button component={Link} to="/d3" variant='contained' onClick={() => handleClick("D3")}>D3</Button>
+                </StyledListItem>
             </StyledList>
         <div>{location}</div>
         </Drawer>
