@@ -22,7 +22,7 @@ const StyledListItem = styled(ListItem)(({ theme } ) => ({
 }));
 
 
-export default function Sidedrawer() {
+export default function Sidedrawer({drawerWidth}) {
     const [location, setLocation] = useState("")
 
 
@@ -33,7 +33,14 @@ const handleClick = (loc) => {
 
 return (
         <Box>
-        <Drawer variant="permanent" anchor="left">
+        <Drawer variant="permanent" anchor="left" sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: drawerWidth,
+            boxSizing: 'border-box',
+          },
+        }}>
             <StyledList>
                 <StyledListItem>
                     <Button component={Link} to="/" variant='contained' onClick={() => handleClick("Home")}>Home</Button>

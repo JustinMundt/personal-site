@@ -9,14 +9,15 @@ import Sidedrawer from './components/Sidebar.tsx'
 import Chart from './components/D3.tsx'
 import Box from '@mui/material/Box';
 
+const drawerWidth=250
 
 const router = createBrowserRouter([
  {
- element: <Sidedrawer />,
+ element: <Sidedrawer drawerWidth={drawerWidth} />,
  children: [
  { path: "/", element: <App /> },
  { path: "/projects", element: <App /> },
- { path: "/d3", element:  <Box sx={{width: '200vw', height: '100vh'}}>
+ { path: "/d3", element:  <Box sx={{width: '500vw', height: '100vh', ml:`${drawerWidth}px`}}>
   <Chart />
 </Box>},
  { path: "/aboutme", element: <div>aboutme</div> },

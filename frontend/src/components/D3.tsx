@@ -36,6 +36,7 @@ export default function Chart() {
 
     const measure = () => {
       const { width, height } = element.getBoundingClientRect();
+      console.log("Gbcl Rect", element.getBoundingClientRect());
       setSize({
         width,
         height, // fixed height to avoid 0px issues
@@ -103,18 +104,19 @@ export default function Chart() {
     <div
       ref={containerRef}
       style={{
-        width: '100%',
         // give the container *some* height so the svg can live
         // border: '1px solid lightgray', // debug: lets you see the box
+        width: '100%',
+        minHeight: '300',
       }}
     >
       <svg
         ref={svgRef}
+        width={size.width}
+        height={size.height}
         style={{
           display: 'block',
-          // IMPORTANT: don’t force 100% height here;
           // let the `width`/`height` attributes we set in D3 control it.
-          width: '100%',
         }}
       />
     </div>
