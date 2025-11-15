@@ -7,6 +7,7 @@ import Drawer from '@mui/material/Drawer'
 import Button from '@mui/material/Button'
 import Sidedrawer from './components/Sidebar.tsx'
 import Chart from './components/D3.tsx'
+import Box from '@mui/material/Box';
 
 
 const router = createBrowserRouter([
@@ -15,9 +16,9 @@ const router = createBrowserRouter([
  children: [
  { path: "/", element: <App /> },
  { path: "/projects", element: <App /> },
- { path: "/d3", element: <div style={{ width: '50%', height: '3000px' }}>
+ { path: "/d3", element:  <Box sx={{width: '200vw', height: '100vh'}}>
   <Chart />
-</div>},
+</Box>},
  { path: "/aboutme", element: <div>aboutme</div> },
  { path: "*", element: <div>404</div> },
  ]}])
