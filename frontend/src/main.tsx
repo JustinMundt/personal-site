@@ -10,23 +10,31 @@ import Chart from './components/D3.tsx'
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 
-const drawerWidth=200
+const drawerWidth=180
 
 const ChartContainer = styled(Box)(({ theme }) => ({
   height: '100%',
-  width: '100%',
+  width: `calc(100vw - ${drawerWidth}px)`,
   overflowY: 'hidden',
-  overflowX: 'auto',
+  overflowX: 'hidden',
+border: '2px solid red', 
 }));
 
 const router = createBrowserRouter([
+
  {
  element: <Sidedrawer drawerWidth={drawerWidth} />,
  children: [
  { path: "/", element: <App /> },
  { path: "/projects", element: <App /> },
  { path: "/d3", element:  <ChartContainer>
-        <Box sx={{width: '300vw'}}>
+            <Box
+              sx={{
+                overflowX: 'auto',
+                minHeight: 200,
+                backgroundColor: 'rgba(0, 250, 255, 0.15)',
+              }}
+            >
   <Chart />
   </Box>
 </ChartContainer>},

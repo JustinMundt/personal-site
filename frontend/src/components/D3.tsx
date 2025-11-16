@@ -12,7 +12,7 @@ export default function Chart() {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
   const [countries, setCountries] = useState<any[]>([]);
-  const [size, setSize] = useState({ width: 2000, height: 700 });
+  const [size, setSize] = useState({ width: 4000, height: 300 });
 
   // Fetch data
   useEffect(() => {
@@ -38,8 +38,8 @@ export default function Chart() {
       const { width, height } = element.getBoundingClientRect();
       console.log("Gbcl Rect", element.getBoundingClientRect());
       setSize({
-        width,
-        height, // fixed height to avoid 0px issues
+        width:width,
+        height:500,
       });
     };
 
@@ -101,13 +101,27 @@ export default function Chart() {
   }, [countries, size]);
 
   return (
+    <ChartLayout
+      containerRef={containerRef}
+      svgRef={svgRef}
+      size={size}
+    />
+  );
+}
+
+type ChartLayoutProps = {
+  containerRef: React.RefObject<HTMLDivElement>;
+  svgRef: React.RefObject<SVGSVGElement>;
+  size: { width: number; height: number };
+};
+
+function ChartLayout({ containerRef, svgRef, size }: ChartLayoutProps) {
+  return (
     <div
       ref={containerRef}
       style={{
-        // give the container *some* height so the svg can live
-        // border: '1px solid lightgray', // debug: lets you see the box
-        width: '100%',
-        minHeight: '300',
+        width: '400vw',
+        minHeight: 300,
       }}
     >
       <svg
@@ -116,10 +130,8 @@ export default function Chart() {
         height={size.height}
         style={{
           display: 'block',
-          // let the `width`/`height` attributes we set in D3 control it.
         }}
       />
     </div>
   );
 }
-
