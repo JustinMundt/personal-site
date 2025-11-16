@@ -12,7 +12,7 @@ export default function Chart() {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
   const [countries, setCountries] = useState<any[]>([]);
-  const [size, setSize] = useState({ width: 2000, height: 500 });
+  const [size, setSize] = useState({ width: 2000, height: 700 });
 
   // Fetch data
   useEffect(() => {
@@ -57,7 +57,7 @@ export default function Chart() {
     const { width, height } = size;
     if (!width || !height) return;
 
-    const margin = { top: 20, right: 20, bottom: 80, left: 80 };
+    const margin = { top: 20, right: 20, bottom: 180, left: 80 };
 
     const svg = d3.select(svgRef.current);
 

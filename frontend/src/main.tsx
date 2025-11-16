@@ -8,8 +8,16 @@ import Button from '@mui/material/Button'
 import Sidedrawer from './components/Sidebar.tsx'
 import Chart from './components/D3.tsx'
 import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
 
-const drawerWidth=250
+const drawerWidth=200
+
+const ChartContainer = styled(Box)(({ theme }) => ({
+  height: '100%',
+  width: '100%',
+  overflowY: 'hidden',
+  overflowX: 'auto',
+}));
 
 const router = createBrowserRouter([
  {
@@ -17,9 +25,11 @@ const router = createBrowserRouter([
  children: [
  { path: "/", element: <App /> },
  { path: "/projects", element: <App /> },
- { path: "/d3", element:  <Box sx={{width: '500vw', height: '100vh', ml:`${drawerWidth}px`}}>
+ { path: "/d3", element:  <ChartContainer>
+        <Box sx={{width: '300vw'}}>
   <Chart />
-</Box>},
+  </Box>
+</ChartContainer>},
  { path: "/aboutme", element: <div>aboutme</div> },
  { path: "*", element: <div>404</div> },
  ]}])

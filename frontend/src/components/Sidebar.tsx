@@ -32,16 +32,19 @@ const handleClick = (loc) => {
 
 
 return (
-        <Box>
-        <Drawer variant="permanent" anchor="left" sx={{
+        <Box sx={{ display: 'flex', height: '100vh'}}>
+       <Drawer
+        variant="permanent"
+        anchor="left"
+        sx={{
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
           },
-        }}>
-            <StyledList>
+        }}
+      >            <StyledList>
                 <StyledListItem>
                     <Button component={Link} to="/" variant='contained' onClick={() => handleClick("Home")}>Home</Button>
                 </StyledListItem>
@@ -57,7 +60,15 @@ return (
             </StyledList>
         <div>{location}</div>
         </Drawer>
-            <Box>
+  <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden',   // main itself doesn't scroll horizontally
+        }}
+      >
                 <Outlet />
             </Box>
         </Box>
