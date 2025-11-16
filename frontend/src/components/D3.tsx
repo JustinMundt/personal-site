@@ -5,6 +5,7 @@ import React, {
   useState,
   useLayoutEffect,
 } from 'react';
+import Button from '@mui/material/Button';
 import * as d3 from 'd3';
 
 export default function Chart() {
@@ -12,7 +13,8 @@ export default function Chart() {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
   const [countries, setCountries] = useState<any[]>([]);
-  const [size, setSize] = useState({ width: 4000, height: 300 });
+  const [size, setSize] = useState({ width: 4000, height: 500 });
+  const [ logScale, setLogScale] = useState(false);
 
   // Fetch data
   useEffect(() => {
@@ -35,11 +37,12 @@ export default function Chart() {
     const element = containerRef.current;
 
     const measure = () => {
-      const { width, height } = element.getBoundingClientRect();
+      // const { width, height } = element.getBoundingClientRect();
+    const { width, height } = size;
       console.log("Gbcl Rect", element.getBoundingClientRect());
       setSize({
         width:width,
-        height:500,
+        height:height,
       });
     };
 
@@ -70,11 +73,16 @@ export default function Chart() {
       .range([margin.left, width - margin.right])
       .padding(0.1);
 
-    const yScale = d3
-      .scaleLinear()
+    const yScale = logScale ? 
+      d3.scaleLog()
+      .domain([100000, d3.max(countries, (d) => d.population)!])
+      .nice()
+      .range([height - margin.bottom, margin.top])
+      :d3.scaleLinear()
       .domain([0, d3.max(countries, (d) => d.population)!])
       .nice()
-      .range([height - margin.bottom, margin.top]);
+      .range([height - margin.bottom, margin.top])
+
 
     svg
       .selectAll('rect')
@@ -98,13 +106,15 @@ export default function Chart() {
       .append('g')
       .attr('transform', `translate(${margin.left},0)`)
       .call(d3.axisLeft(yScale));
-  }, [countries, size]);
+  }, [countries, size, logScale]);
 
   return (
     <ChartLayout
       containerRef={containerRef}
       svgRef={svgRef}
       size={size}
+      setLogScale={setLogScale}
+      logScale={logScale}
     />
   );
 }
@@ -115,7 +125,7 @@ type ChartLayoutProps = {
   size: { width: number; height: number };
 };
 
-function ChartLayout({ containerRef, svgRef, size }: ChartLayoutProps) {
+function ChartLayout({ containerRef, svgRef, size, logScale, setLogScale }: ChartLayoutProps) {
   return (
     <div
       ref={containerRef}
@@ -132,6 +142,7 @@ function ChartLayout({ containerRef, svgRef, size }: ChartLayoutProps) {
           display: 'block',
         }}
       />
+      <Button onClick={() => setLogScale(v => !v)}>{logScale ?"LinearScale":"LogScale"}</Button>
     </div>
   );
 }

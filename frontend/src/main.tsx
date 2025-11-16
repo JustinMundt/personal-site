@@ -13,7 +13,7 @@ import { styled } from '@mui/material/styles';
 const drawerWidth=180
 
 const ChartContainer = styled(Box)(({ theme }) => ({
-  height: '100%',
+  height: '100vh',
   width: `calc(100vw - ${drawerWidth}px)`,
   overflowY: 'hidden',
   overflowX: 'hidden',
@@ -30,6 +30,7 @@ const router = createBrowserRouter([
  { path: "/d3", element:  <ChartContainer>
             <Box
               sx={{
+                height: '100vh',
                 overflowX: 'auto',
                 minHeight: 200,
                 backgroundColor: 'rgba(0, 250, 255, 0.15)',
