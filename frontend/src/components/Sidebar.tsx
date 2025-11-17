@@ -71,11 +71,11 @@ export default function Sidedrawer({ drawerWidth }: { drawerWidth: number }) {
           <StyledListItem>
             <Button
               component={Link}
-              to="/d3"
+              to="/world_population"
               variant="contained"
-              onClick={() => handleClick('D3')}
+              onClick={() => handleClick('World Population')}
             >
-              D3
+              World Population
             </Button>
           </StyledListItem>
         </StyledList>

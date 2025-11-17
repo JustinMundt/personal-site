@@ -27,7 +27,7 @@ const router = createBrowserRouter([
  children: [
  { path: "/", element: <App /> },
  { path: "/projects", element: <App /> },
- { path: "/d3", element:  <ChartContainer>
+ { path: "/world_population", element:  <ChartContainer>
             <Box
               sx={{
                 height: '100vh',

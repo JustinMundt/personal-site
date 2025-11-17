@@ -37,8 +37,8 @@ export default function Chart() {
     const element = containerRef.current;
 
     const measure = () => {
-      // const { width, height } = element.getBoundingClientRect();
-    const { width, height } = size;
+      const { width, heig } = element.getBoundingClientRect();
+    const height = size.height;
       console.log("Gbcl Rect", element.getBoundingClientRect());
       setSize({
         width:width,
