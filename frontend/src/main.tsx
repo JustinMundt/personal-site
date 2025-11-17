@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css'
 import App from './App.tsx'
+import Projects from './components/Projects.tsx'
 import Drawer from '@mui/material/Drawer'
 import Button from '@mui/material/Button'
 import Sidedrawer from './components/Sidebar.tsx'
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
  element: <Sidedrawer drawerWidth={drawerWidth} />,
  children: [
  { path: "/", element: <App /> },
- { path: "/projects", element: <App /> },
+ { path: "/projects", element: <Projects /> },
  { path: "/world_population", element:  <ChartContainer>
             <Box
               sx={{
