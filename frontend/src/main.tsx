@@ -41,6 +41,7 @@ const router = createBrowserRouter([
   </Box>
 </ChartContainer>},
  { path: "/aboutme", element: <div>aboutme</div> },
+ { path: "/fed", element: <div>aboutme</div> },
  { path: "*", element: <div>404</div> },
  ]}])
 

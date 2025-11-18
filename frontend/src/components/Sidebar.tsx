@@ -78,7 +78,19 @@ export default function Sidedrawer({ drawerWidth }: { drawerWidth: number }) {
               World Population
             </Button>
           </StyledListItem>
+          <StyledListItem>
+            <Button
+              component={Link}
+              to="/fed"
+              variant="contained"
+              onClick={() => handleClick('Federal Reserve Data')}
+            >
+              Federal Reserve Data
+            </Button>
+          </StyledListItem>
+
         </StyledList>
+
         <div>{location}</div>
       </Drawer>
 
