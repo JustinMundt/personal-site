@@ -114,7 +114,7 @@ export default function Fed() {
       .curve(d3.curveMonotoneX);
 
     // Draw line
-    svg
+const path = svg
       .append('path')
       .datum(data)
       .attr('fill', 'none')
@@ -122,6 +122,30 @@ export default function Fed() {
       .attr('stroke-width', 2)
       .attr('d', line);
 
+const totalLength = path.node().getTotalLength();
+
+path
+  .attr('stroke-dasharray', totalLength + ' ' + totalLength)
+  .attr('stroke-dashoffset', totalLength)
+  .transition()
+  .duration(10000)   // 10 seconds
+  .ease(d3.easeLinear)
+  .attr('stroke-dashoffset', 0);
+
+const viewWidth = 500
+
+// 3) pan the viewBox over the same duration
+const duration = 10000;
+// const maxX = width - viewWidth;
+const maxX = width - viewWidth;
+const start = performance.now();
+
+d3.timer((elapsed) => {
+  const t = Math.min(1, elapsed / duration);
+  const x0 = t * maxX;
+  svg.attr('viewBox', `${x0} 0 ${viewWidth} ${height}`);
+  if (t === 1) return true;
+});
     // Axes
     svg
       .append('g')
@@ -166,7 +190,8 @@ export default function Fed() {
     <div
       ref={containerRef}
       style={{
-        width: '400vw',
+        // width: '400vw',
+        width: '100%',
         minHeight: 300,
         position: 'relative', // needed for tooltip positioning
       }}
